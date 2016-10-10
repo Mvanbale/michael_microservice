@@ -1,6 +1,11 @@
 const express = require('express');
 const app = express();
 const http = require('http');
+
+//get the port for our rest api from config
+var config = require('config');
+var port = config.get('server.port');
+
 const server = http.createServer(app);
 const expressRest = require('express-rest');
 const data = require('./data');
@@ -15,7 +20,7 @@ data.connectToDB();
 require('./routes')(rest);
 
 //start listening
-server.listen(3000, () => {
-  console.log('Server is listening on port 3000 ')
+server.listen(port, () => {
+  console.log(`Server is listening on port ${port}`)
 });
 
