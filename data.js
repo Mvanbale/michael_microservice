@@ -27,5 +27,5 @@ module.exports.planesByType = (planeType) =>{
 
 module.exports.planesByName = (name) =>{
   console.log(`Querying for plane with the name ${name}.`);
-  return crate.execute("select * from planes, planetypes where planes.planetype = planetypes.name = ?", [name]).error(console.log);
+  return crate.execute("select * from planes, planetypes where planes.planetype = planetypes.name AND planes.name = ?", [name]).error(console.log);
 }
